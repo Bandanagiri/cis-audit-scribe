@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
@@ -16,6 +15,7 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { useTheme } from './ThemeProvider';
 import TeamBanner from './TeamBanner';
 import { Link } from 'react-router-dom';
+import AuditDiagramAnalysis from './AuditDiagramAnalysis';
 
 const Dashboard = () => {
   const [isRunningAudit, setIsRunningAudit] = useState(false);
@@ -35,7 +35,6 @@ const Dashboard = () => {
     });
     
     try {
-      // Simulate a delay for the audit process
       await new Promise(resolve => setTimeout(resolve, 3000));
       
       const report = await auditService.runAudit(benchmarks, "Windows 11");
@@ -66,7 +65,6 @@ const Dashboard = () => {
       description: "Your report is being generated and will download shortly.",
     });
     
-    // Simulate a delay
     setTimeout(() => {
       toast({
         title: "Report Ready",
@@ -106,7 +104,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Team Banner - Prominent display */}
       <TeamBanner />
 
       <Tabs defaultValue="overview" className="mt-6">
@@ -115,6 +112,7 @@ const Dashboard = () => {
           <TabsTrigger value="benchmarks">Benchmarks</TabsTrigger>
           <TabsTrigger value="reports">Reports</TabsTrigger>
           <TabsTrigger value="settings">Settings</TabsTrigger>
+          <TabsTrigger value="diagrams">Diagrams</TabsTrigger>
         </TabsList>
 
         <TabsContent value="overview" className="space-y-6">
@@ -335,6 +333,33 @@ const Dashboard = () => {
                 
                 <Button className="mt-4">Save Settings</Button>
               </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="diagrams">
+          <Card>
+            <CardHeader>
+              <CardTitle>Audit Output Analysis</CardTitle>
+              <CardDescription>Visual diagrams of audit results and security findings</CardDescription>
+            </CardHeader>
+            <CardContent>
+              {lastScanDate ? (
+                <AuditDiagramAnalysis
+                  complianceScore={complianceScore}
+                  passingControls={passingControls}
+                  totalControls={totalControls}
+                  severityCounts={{
+                    high: Math.floor((totalControls - passingControls) * 0.4),
+                    medium: Math.floor((totalControls - passingControls) * 0.35),
+                    low: Math.floor((totalControls - passingControls) * 0.25),
+                  }}
+                />
+              ) : (
+                <div className="text-center py-8 text-muted-foreground">
+                  No diagrams available yet. Run an audit to generate analysis diagrams.
+                </div>
+              )}
             </CardContent>
           </Card>
         </TabsContent>
