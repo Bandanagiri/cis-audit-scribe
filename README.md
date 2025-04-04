@@ -2,7 +2,7 @@
 
 ## Project info
 
-**URL**: https://lovable.dev/projects/d87ae845-916e-4ded-a66d-5fe42b2039e4
+**URL**: https://cis-audit-scribe.lovable.app/
 
 ## How can I edit this code?
 
