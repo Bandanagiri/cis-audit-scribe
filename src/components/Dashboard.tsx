@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
-import { AlertCircle, FileText, Download, Play, Shield, AlertTriangle, CheckCircle } from 'lucide-react';
+import { AlertCircle, FileText, Download, Play, Shield, AlertTriangle, CheckCircle, Coffee } from 'lucide-react';
 import { Progress } from '@/components/ui/progress';
 import { useToast } from '@/hooks/use-toast';
 import OSSelector from './OSSelector';
@@ -15,6 +15,7 @@ import { Separator } from '@/components/ui/separator';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { useTheme } from './ThemeProvider';
 import TeamBanner from './TeamBanner';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const [isRunningAudit, setIsRunningAudit] = useState(false);
@@ -90,7 +91,19 @@ const Dashboard = () => {
           </div>
           <p className="text-muted-foreground">Comprehensive security audit against CIS Benchmarks</p>
         </div>
-        <OSSelector />
+        <div className="flex items-center gap-4">
+          <Button 
+            variant="outline" 
+            className="gap-2"
+            asChild
+          >
+            <Link to="/java-implementation">
+              <Coffee className="h-4 w-4" />
+              Java Implementation
+            </Link>
+          </Button>
+          <OSSelector />
+        </div>
       </div>
 
       {/* Team Banner - Prominent display */}

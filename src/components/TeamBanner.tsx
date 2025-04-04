@@ -1,6 +1,7 @@
 
 import React from 'react';
-import { Trophy } from 'lucide-react';
+import { Trophy, Coffee } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 
 const TeamBanner = () => {
   return (
@@ -20,7 +21,11 @@ const TeamBanner = () => {
           </div>
         </div>
         
-        <div className="hidden md:block">
+        <div className="hidden md:flex items-center gap-3">
+          <Badge variant="outline" className="flex items-center gap-1 bg-orange-50 text-orange-700 border-orange-200">
+            <Coffee className="h-3.5 w-3.5" />
+            Java-Powered
+          </Badge>
           <div className="text-sm text-muted-foreground">
             Enterprise Security Platform
           </div>
