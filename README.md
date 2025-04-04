@@ -1,4 +1,4 @@
-# Welcome to your CSI Audit Scribe
+# Welcome to our CSI Audit Scribe
 
 ## Project info
 
